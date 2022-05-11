@@ -1,23 +1,25 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
+import { data } from './data/data';
+import Cell from './components/Cell';
 
 function App() {
+  const [cells, setCells] = useState(data.cells);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container-fluid">
+      <table className='table table-bordered table-dark'>
+        <thead>
+          <tr>
+            <th>Cell Type</th>
+            <th>Execution Count</th>
+            <th>Metadata</th>
+            <th>Oututs</th>
+            <th>Source</th>
+          </tr>
+        </thead>
+        <tbody>{cells.map((cell, i) => <Cell data={cell} key={i} />)}</tbody>
+      </table>
+      
     </div>
   );
 }
